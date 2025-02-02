@@ -24,7 +24,7 @@ app.use(session({
 }));
 
 // Database connection
-mongoose.connect('mongodb://localhost:27017/shelter_seek', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://annamanenidheer:gbJq2h4R8XCh9P60@cluster0.zy1yu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('Connected to MongoDB');
     })
