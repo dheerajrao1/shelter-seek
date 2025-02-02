@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelter Seek - Donate</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #005f73;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container h1 {
+            font-family: cursive;
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+           
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: #005f73;
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: 4px solid #0a9396;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            font-family: cursive;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #94d2bd;
+        }
+
+        /* Donate Form */
+        .donate-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 500px;
+        }
+
+        .donate-form h2 {
+            font-family: cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .donate-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .donate-form input[type="text"],
+        .donate-form input[type="email"],
+        .donate-form input[type="tel"],
+        .donate-form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .donate-form button.donate-button {
+            background-color: #005f73;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .donate-form button.donate-button:hover {
+            background-color: #0a9396;
+        }
+
+        #qrCode {
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: #005f73;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="/images/logo.png" alt="Shelter Seek Logo" class="logo">
+                <h1>Shelter Seek</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/volunteer">Want to become a Volunteer?</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="donate-form">
+        <div class="container">
+            <h2>Donate Now</h2>
+            <form id="donationForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="phone">Your Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required><br>
+                <label for="amount">Donation Amount:</label>
+                <input type="number" id="amount" name="amount" min="1" required><br>
+                <button type="button" class="donate-button" id="proceedToPayment">Proceed to Payment</button>
+            </form>
+            <div id="qrCode" style="display:none; margin-top: 20px;"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shelter Seek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('proceedToPayment').addEventListener('click', function() {
+            // Gather form data
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var amount = document.getElementById('amount').value;
+
+            // Validate form data
+            if (name && email && phone && amount) {
+                // Generate UPI payment URL
+                var upiID = "9059649080@ybl";
+                var upiURL = "upi://pay?pa=" + upiID + "&pn=Shelter Seek&am=" + amount + "&cu=INR";
+
+                // Generate QR code for payment
+                var qrCodeDiv = document.getElementById('qrCode');
+                qrCodeDiv.style.display = 'block';
+                qrCodeDiv.innerHTML = '';
+                new QRCode(qrCodeDiv, {
+                    text: upiURL,
+                    width: 128,
+                    height: 128
+                });
+            } else {
+                alert("Please fill in all the fields.");
+            }
+        });
+    </script>
+</body>
+</html>

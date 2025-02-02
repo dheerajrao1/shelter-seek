@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Tasks</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #005f73;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container h1 {
+            font-family: cursive;
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: #005f73;
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: 4px solid #0a9396;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            font-family: cursive;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #94d2bd;
+        }
+
+        /* Task List */
+        .task-list {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .task-list h2 {
+            font-family: cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .task-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-list li button {
+            background-color: #005f73;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .task-list li button:hover {
+            background-color: #0a9396;
+        }
+
+        /* Completed Tasks */
+        .completed-tasks {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .completed-tasks h2 {
+            font-family: cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .completed-tasks ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .completed-tasks li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        /* Footer */
+        footer {
+            background: #005f73;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="/images/logo.png" alt="Shelter Seek Logo" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <li><a href="/donate">Donate</a></li>
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="task-list">
+        <div class="container">
+            <h2>Your Tasks</h2>
+            <ul id="taskList">
+                <% if (tasksPending && tasksPending.length > 0) { %>
+                    <% tasksPending.forEach(task => { %>
+                        <li id="<%= task._id %>">
+                            <%= task.name %> - <%= task.address %>
+                            <!-- Update the onclick event to pass both taskId and volunteerId -->
+                            <button onclick="completeTask('<%= task._id %>', '<%= volunteerId %>')">Complete</button>
+                            <button onclick="unableTask('<%= task._id %>')">I Can't Do It</button>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No pending tasks found.</p>
+                <% } %>
+            </ul>
+        </div>
+    </section>
+    <section class="completed-tasks">
+        <div class="container">
+            <h2>Completed Tasks</h2>
+            <ul id="completedTasksList">
+                <% if (tasksCompleted && tasksCompleted.length > 0) { %>
+                    <% tasksCompleted.forEach(task => { %>
+                        <li>
+                            <%= task.name %> - <%= task.address %> 
+                            (Completed by: <%= task.completedBy.name %>) <!-- Display volunteer's name -->
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No completed tasks found.</p>
+                <% } %>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shelter Seek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function completeTask(taskId, volunteerId) {
+            fetch('/volunteer/tasks/complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskId, volunteerId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message === 'Task marked as completed') {
+                    // Remove the task from the pending tasks list
+                    const taskElement = document.getElementById(taskId);
+                    if (taskElement) {
+                        taskElement.parentNode.removeChild(taskElement);
+                    }
+                    
+                    // Append the completed task to the completed tasks section
+                    const task = data.task;
+                    const volunteerInfo = data.volunteerInfo; // Assuming the server sends back volunteer information
+                    const completedTasksList = document.getElementById('completedTasksList');
+                    if (completedTasksList) {
+                        const li = document.createElement('li');
+                        li.textContent = `${task.name} - ${task.address} (Completed by: ${volunteerInfo.name})`; // Include volunteer's name
+                        completedTasksList.appendChild(li);
+                    }
+                } else {
+                    throw new Error('Error completing task');
+                }
+            })
+            .catch(error => {
+                console.error('Error completing task:', error);
+                alert('Error completing task');
+            });
+        }
+        
+        function unableTask(taskId) {
+            fetch('/volunteer/tasks/unable', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ taskId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Task unassigned successfully') {
+                    location.reload();
+                } else {
+                    alert('Error unassigning task');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Registration</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #005f73;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container h1 {
+            font-family: cursive;
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: #005f73;
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: 4px solid #0a9396;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            font-family: cursive;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #94d2bd;
+        }
+
+        /* Registration Form */
+        .registration-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 700px;
+        }
+
+        .registration-form h2 {
+            font-family: cursive;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .registration-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .registration-form input[type="text"],
+        .registration-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .registration-form button[type="submit"] {
+            background-color: #005f73;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .registration-form button[type="submit"]:hover {
+            background-color: #0a9396;
+        }
+
+        /* Footer */
+        footer {
+            background: #005f73;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="/images/logo.png" alt="Shelter Seek Logo" class="logo">
+                <h1>Shelter Seek</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/login">Volunteer Login</a></li>
+                    <li><a href="/donate">Donate</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="registration-form">
+        <div class="container">
+            <h2>Volunteer Registration</h2>
+            <form action="/volunteer" method="POST">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shelter Seek. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

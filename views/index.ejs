@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelter Seek</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #005f73;
+            color: #fff;
+            padding: 20px 0;
+            border-bottom: 4px solid #0a9396;
+        }
+        header h1 {
+            font-family: cursive;
+            font-size: 30px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            font-family: cursive;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        header nav ul li a:hover {
+            color: #94d2bd;
+        }
+
+        .hero {
+            height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('/images/donation.jpg'); /* Ensure this path is correct */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            color: #fff;
+            background: #0a9396;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button:hover {
+            background: #005f73;
+            transform: scale(1.05);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .main-content h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        .hidden {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        #help-homeless-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        #help-homeless-form h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        #help-homeless-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #help-homeless-form input, 
+        #help-homeless-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: #005f73;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="/images/logo.png" alt="Shelter Seek Logo" class="logo">
+                <h1>Shelter Seek</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/volunteer">Want to become a Volunteer?</a></li>
+                    <li><a href="/login">Volunteer Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Empowering Lives and Building Futures</h1>
+                <p style="font-style: italic; font-family: Georgia, 'Times New Roman', Times, serif;">"A Helping Hand Can Be a Ray Of SunShine In a CloudyWorld"</p>
+                <a href="/donate" class="cta-button">Donate Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="mission-statement">
+                <h2>Our Mission</h2>
+                <p>At Shelter Seek, we believe that every individual deserves a safe place to call home. Our mission is to provide support, resources, and opportunities for homeless individuals and families to regain stability and thrive.</p>
+            </div>
+
+            <div class="vision">
+                <h2>Our Vision</h2>
+                <p>A World Without Homelessness</p>
+                <p>We envision a world where homelessness is eradicated, where every person has access to shelter, food, and the support they need to lead fulfilling lives.</p>
+            </div>
+
+            <div class="how-we-help">
+                <h2>How We Help</h2>
+                <p><strong>Shelter Assistance:</strong> We provide emergency shelter and transitional housing to those in need, offering a safe refuge from the streets.</p>
+                <p><strong>Basic Needs Support:</strong> From meals to clothing, we ensure that essential needs are met for individuals and families facing homelessness.</p>
+                <p><strong>Job Training and Placement:</strong> Through partnerships with local businesses and organizations, we offer job training programs and assistance with job placement, empowering individuals to secure stable employment.</p>
+                <p><strong>Healthcare Services:</strong> Access to healthcare is crucial for overall well-being. We connect individuals with medical and mental health services to address their needs.</p>
+                <p><strong>Education and Skill Development:</strong> We offer educational programs and skill-building workshops to help individuals acquire the tools they need to succeed.</p>
+            </div>
+            
+            <br>
+            <p>Did you find anyone homeless? You can help them by clicking the button below:</p>
+            <button id="help-homeless-btn" class="cta-button">Click Here to Help</button>
+            <!-- Form for helping homeless -->
+            <div id="help-homeless-form" class="hidden">
+                <h2>Help Homeless Form</h2>
+                <form id="homeless-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+        
+                    <label for="address">Address (where you found them):</label>
+                    <textarea id="address" name="address" rows="4" required></textarea>
+        
+                    <button type="submit" class="cta-button">Submit</button>
+                </form>
+                <p id="submission-message" class="hidden">Submitted Successfully!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shelter Seek. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const helpHomelessBtn = document.getElementById("help-homeless-btn");
+            const helpHomelessForm = document.getElementById("help-homeless-form");
+            const homelessForm = document.getElementById("homeless-form");
+
+            helpHomelessBtn.addEventListener("click", function() {
+                helpHomelessForm.classList.toggle("active");
+            });
+
+            homelessForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const formData = new FormData(homelessForm);
+                const taskData = {
+                    name: formData.get('name'),
+                    address: formData.get('address')
+                };
+
+                // Send task data to the server using AJAX
+                fetch('/submit-task', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(taskData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Handle response from server, e.g., display success message
+                    document.getElementById("submission-message").classList.add("active");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle error response from server
+                });
+            });
+        });
+    </script>
+</body>
+</html>
